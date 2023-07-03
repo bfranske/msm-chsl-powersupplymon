@@ -60,9 +60,13 @@ def loop():
     status['phase_error_bypass_timeout']=bool(Timers[2])
 
     if status != statusLast:
-        pprint(status)
+        statusLastSet = set(statusLast.items())
+        statusSet = set(status.items())
+        updates = dict(statusSet - statusLastSet)
+        #print only the changes
+        pprint(updates)
         statusLast=status
-        
+
     return
 
 def main():
